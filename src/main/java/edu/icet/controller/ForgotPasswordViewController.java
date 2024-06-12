@@ -21,7 +21,7 @@ public class ForgotPasswordViewController {
 
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("otp-verification-view.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/view/otp-verification-view.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -33,7 +33,7 @@ public class ForgotPasswordViewController {
     }
 
     public void linkSigninOnAction(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("signin-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/signin-view.fxml"));
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -24,7 +24,7 @@ public class OtpVerificationViewController implements Initializable {
 
     public void btnVerifyCodeOnAction(ActionEvent actionEvent) throws IOException {
         if(codeTxtField.getText().equals(ForgotPasswordService.otpCode)){
-            Parent root = FXMLLoader.load(getClass().getResource("password-reset-view.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/password-reset-view.fxml"));
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
