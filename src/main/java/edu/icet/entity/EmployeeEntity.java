@@ -1,9 +1,7 @@
 package edu.icet.entity;
 
-
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 @Getter
@@ -24,16 +22,4 @@ public class EmployeeEntity {
     private String email;
     private String role;
     private String password;
-
-    public EmployeeEntity() {}
-
-    public EmployeeEntity(String firstName, String lastName, String address, String phoneNo, String email, String role,String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.phoneNo = phoneNo;
-        this.email = email;
-        this.role = role;
-        this.password = password;
-    }
 }

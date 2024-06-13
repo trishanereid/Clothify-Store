@@ -1,8 +1,8 @@
-package edu.icet.controller;
+package edu.icet.controller.user;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.icet.model.EmployeeModel;
-import edu.icet.service.UserRegisterService;
+import edu.icet.bo.UserRegisterService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

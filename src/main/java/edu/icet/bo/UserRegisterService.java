@@ -1,4 +1,4 @@
-package edu.icet.service;
+package edu.icet.bo;
 
 
 import edu.icet.entity.EmployeeEntity;

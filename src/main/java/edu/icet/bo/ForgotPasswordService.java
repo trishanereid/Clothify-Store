@@ -1,4 +1,4 @@
-package edu.icet.service;
+package edu.icet.bo;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

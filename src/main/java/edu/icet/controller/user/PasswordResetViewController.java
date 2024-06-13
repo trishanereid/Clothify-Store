@@ -1,4 +1,4 @@
-package edu.icet.controller;
+package edu.icet.controller.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
