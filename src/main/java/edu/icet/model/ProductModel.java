@@ -1,4 +1,4 @@
-package edu.icet.model.tbl;
+package edu.icet.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

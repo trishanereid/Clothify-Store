@@ -3,7 +3,7 @@ package edu.icet.controller.product;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import edu.icet.bo.AddProductService;
-import edu.icet.model.tbl.ProductModel;
+import edu.icet.model.ProductModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,9 +73,9 @@ public class AddProductViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         ObservableList<Object> categories = FXCollections.observableArrayList();
-        categories.add("Women’s Clothing");
-        categories.add("Men’s Clothing");
-        categories.add("Kids Clothing");
+        categories.add("Ladies wear");
+        categories.add("Mens wear");
+        categories.add("Kids wear");
         catagoryCmb.setItems(categories);
 
         ObservableList<Object> sizes = FXCollections.observableArrayList();

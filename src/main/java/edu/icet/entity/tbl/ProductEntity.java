@@ -25,4 +25,34 @@ public class ProductEntity {
     private Double price;
     private String category;
     private Integer qty;
+
+    public ProductEntity() {
+    }
+
+    public ProductEntity(Integer id, String title, byte[] image, String description, String size, String color, Double price, String category, Integer qty) {
+        this.id = id;
+        this.title = title;
+        this.image = image;
+        this.description = description;
+        this.size = size;
+        this.color = color;
+        this.price = price;
+        this.category = category;
+        this.qty = qty;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", image=" + (image != null ? "image data" : "null") +
+                ", description='" + description + '\'' +
+                ", size='" + size + '\'' +
+                ", color='" + color + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", qty=" + qty +
+                '}';
+    }
 }

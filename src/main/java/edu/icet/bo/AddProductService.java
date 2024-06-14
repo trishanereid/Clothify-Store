@@ -1,8 +1,7 @@
 package edu.icet.bo;
 
-import edu.icet.entity.EmployeeEntity;
 import edu.icet.entity.tbl.ProductEntity;
-import edu.icet.model.tbl.ProductModel;
+import edu.icet.model.ProductModel;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.modelmapper.ModelMapper;
@@ -52,26 +51,5 @@ public class AddProductService {
         entityManager.getTransaction().commit();
         entityManager.close();
         entityManagerFactory.close();
-
-
-
-
-
-//        // Load image from file
-//        File file = new File("path/to/your/image.jpg");
-//        byte[] imageBytes = null;
-//        try {
-//            imageBytes = Files.readAllBytes(file.toPath());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Create ImageEntity object
-//        ImageEntity imageEntity = new ImageEntity();
-//        imageEntity.setName(file.getName());
-//        imageEntity.setImage(imageBytes);
-//
-//        // Save ImageEntity object to the database
-//        session.save(imageEntity);
     }
 }
