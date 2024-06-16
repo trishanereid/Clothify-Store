@@ -17,5 +17,4 @@ public class ProductDAO {
         entityManager.close();
         return productList;
     }
-
 }

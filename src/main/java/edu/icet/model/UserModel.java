@@ -1,5 +1,6 @@
 package edu.icet.model;
 
+import javafx.beans.property.SimpleStringProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class EmployeeModel {
+public class UserModel {
+    private String id;
     private String firstName;
     private String lastName;
     private String address;
@@ -19,4 +21,5 @@ public class EmployeeModel {
     private String email;
     private String role;
     private String password;
+
 }

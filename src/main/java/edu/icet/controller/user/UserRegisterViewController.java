@@ -1,8 +1,10 @@
 package edu.icet.controller.user;
 
 import com.jfoenix.controls.JFXComboBox;
-import edu.icet.model.EmployeeModel;
+import edu.icet.dao.UserDAO;
+import edu.icet.model.UserModel;
 import edu.icet.bo.UserRegisterService;
+import edu.icet.util.IdGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,7 +38,7 @@ public class UserRegisterViewController implements Initializable {
 
 
     public void SignUpBtnOnAction(ActionEvent actionEvent) throws IOException {
-        UserRegisterService userRegisterService = new UserRegisterService();
+        UserDAO userDAO = new UserDAO();
 
         String password = null;
         if (passwordTxtField.getText().equals(reEnterPasswordTxtField.getText())){
@@ -57,7 +59,6 @@ public class UserRegisterViewController implements Initializable {
                 emailTxtField.getText() == null || emailTxtField.getText().isEmpty() ||
                 roleComboBox.getValue() == null || password == null || password.isEmpty()) {
 
-            // Show an alert if any field is missing
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Input Error");
             alert.setHeaderText(null);
@@ -66,7 +67,8 @@ public class UserRegisterViewController implements Initializable {
             return;
         }
 
-        EmployeeModel employee = new EmployeeModel(
+        UserModel user = new UserModel(
+                IdGenerator.genarateUserId(),
                 firstNameTxtField.getText(),
                 lastNameTxtField.getText(),
                 addressTxtField.getText(),
@@ -76,7 +78,7 @@ public class UserRegisterViewController implements Initializable {
                 passwordEncryption(password)
         );
 
-        userRegisterService.saveEmployee(employee);
+        userDAO.persist(user);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Account Center");

@@ -6,12 +6,11 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Entity(name = "employees")
-@Table(name = "employees")
-public class EmployeeEntity {
+@Entity(name = "users")
+@Table(name = "users")
+public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private String id;
 
     @Column(name = "first_name")
     private String firstName;

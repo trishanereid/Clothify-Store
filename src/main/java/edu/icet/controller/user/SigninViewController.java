@@ -1,5 +1,6 @@
 package edu.icet.controller.user;
 
+import edu.icet.bo.SignInService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -40,19 +41,33 @@ public class SigninViewController {
     }
 
     public void SignInBtnOnAction(ActionEvent actionEvent) throws IOException {
+        SignInService signInService = new SignInService();
 
         String email = txtfieldEmail.getText();
         String password = txtfieldPassword.getText();
 
+        signInService.userProfileActivation(email, password);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
-        Image image = new Image("icon.png");
-        stage.getIcons().add(image);
-        stage.setScene(scene);
-        stage.show();
-        Stage currentStage = (Stage) txtfieldEmail.getScene().getWindow();
-        currentStage.close();
+        if (signInService.isAdmin()){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/admin-dashboard-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            Image image = new Image("icon.png");
+            stage.getIcons().add(image);
+            stage.setScene(scene);
+            stage.show();
+            Stage currentStage = (Stage) txtfieldEmail.getScene().getWindow();
+            currentStage.close();
+        }else {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            Image image = new Image("icon.png");
+            stage.getIcons().add(image);
+            stage.setScene(scene);
+            stage.show();
+            Stage currentStage = (Stage) txtfieldEmail.getScene().getWindow();
+            currentStage.close();
+        }
     }
 }
