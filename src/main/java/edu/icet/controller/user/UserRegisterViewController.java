@@ -2,8 +2,7 @@ package edu.icet.controller.user;
 
 import com.jfoenix.controls.JFXComboBox;
 import edu.icet.dao.UserDAO;
-import edu.icet.model.UserModel;
-import edu.icet.bo.UserRegisterService;
+import edu.icet.model.User;
 import edu.icet.util.IdGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -67,7 +66,7 @@ public class UserRegisterViewController implements Initializable {
             return;
         }
 
-        UserModel user = new UserModel(
+        User user = new User(
                 IdGenerator.genarateUserId(),
                 firstNameTxtField.getText(),
                 lastNameTxtField.getText(),

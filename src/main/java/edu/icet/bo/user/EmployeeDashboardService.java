@@ -1,7 +1,7 @@
-package edu.icet.bo;
+package edu.icet.bo.user;
 
 import edu.icet.dao.ProductDAO;
-import edu.icet.entity.tbl.ProductEntity;
+import edu.icet.entity.ProductEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;

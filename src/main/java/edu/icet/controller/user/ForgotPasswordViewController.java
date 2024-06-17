@@ -1,6 +1,6 @@
 package edu.icet.controller.user;
 
-import edu.icet.bo.ForgotPasswordService;
+import edu.icet.bo.user.ForgotPasswordService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

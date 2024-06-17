@@ -1,7 +1,7 @@
 package edu.icet.controller.user;
 
-import edu.icet.bo.EmployeeDashboardService;
-import edu.icet.entity.tbl.ProductEntity;
+import edu.icet.bo.user.EmployeeDashboardService;
+import edu.icet.entity.ProductEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

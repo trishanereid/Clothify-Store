@@ -1,7 +1,7 @@
-package edu.icet.bo;
+package edu.icet.bo.product;
 
-import edu.icet.entity.tbl.ProductEntity;
-import edu.icet.model.ProductModel;
+import edu.icet.entity.ProductEntity;
+import edu.icet.model.Product;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.modelmapper.ModelMapper;
@@ -31,7 +31,7 @@ public class AddProductService {
         return imagePath;
     }
 
-    public void saveProduct(ProductModel product) {
+    public void saveProduct(Product product) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();

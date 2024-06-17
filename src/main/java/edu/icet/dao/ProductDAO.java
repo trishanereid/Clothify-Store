@@ -1,6 +1,6 @@
 package edu.icet.dao;
 
-import edu.icet.entity.tbl.ProductEntity;
+import edu.icet.entity.ProductEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,7 +13,7 @@ public class ProductDAO {
 
     public List<ProductEntity> getAllProducts() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<ProductEntity> productList = entityManager.createQuery("FROM edu.icet.entity.tbl.ProductEntity", ProductEntity.class).getResultList();
+        List<ProductEntity> productList = entityManager.createQuery("FROM edu.icet.entity.ProductEntity", ProductEntity.class).getResultList();
         entityManager.close();
         return productList;
     }

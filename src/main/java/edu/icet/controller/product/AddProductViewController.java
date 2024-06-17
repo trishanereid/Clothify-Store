@@ -2,8 +2,8 @@ package edu.icet.controller.product;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
-import edu.icet.bo.AddProductService;
-import edu.icet.model.ProductModel;
+import edu.icet.bo.product.AddProductService;
+import edu.icet.model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,7 +43,7 @@ public class AddProductViewController implements Initializable {
 
     public void btnAddProductOnAction(ActionEvent actionEvent) {
 
-        ProductModel product = new ProductModel(
+        Product product = new Product(
                 titleTxtField.getText(),
                 txtFieldImg.getText().getBytes(),
                 descriptionTxtField.getText(),

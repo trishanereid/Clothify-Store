@@ -1,13 +1,11 @@
 package edu.icet.dao;
 
 import edu.icet.entity.UserEntity;
-import edu.icet.entity.tbl.ProductEntity;
-import edu.icet.model.UserModel;
+import edu.icet.model.User;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import java.util.List;
 
@@ -15,7 +13,7 @@ public class UserDAO {
     ModelMapper mapper = new ModelMapper();
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     EntityManager entityManager = entityManagerFactory.createEntityManager();
-    public void persist(UserModel user) {
+    public void persist(User user) {
         entityManager.getTransaction().begin();
 
         entityManager.persist(
