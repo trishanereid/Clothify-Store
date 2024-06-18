@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,24 +30,12 @@ public class EmployeeDashboardController implements Initializable {
     public TableColumn stockCol;
     public TableColumn priceCol;
 
-    public void btnAddProductOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/add-product-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
-        Image image = new Image("icon.png");
-        stage.getIcons().add(image);
-        stage.setScene(scene);
-        stage.show();
-        Stage currentStage = (Stage) btnAddProduct.getScene().getWindow();
-        currentStage.close();
-    }
+
+    EmployeeDashboardService employeeDashboardService = new EmployeeDashboardService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        EmployeeDashboardService employeeDashboardService = new EmployeeDashboardService();
-        employeeDashboardService.retriveProductsToTable(productTbl);
-
-
+        allProducts();
 
         TableColumn<ProductEntity, String> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -95,7 +80,6 @@ public class EmployeeDashboardController implements Initializable {
             {
                 addButton.setOnAction(event -> {
                     ProductEntity product = getTableView().getItems().get(getIndex());
-//                    cartItems.add(product);
                     System.out.println("Added to cart: " + product);
                 });
             }
@@ -118,6 +102,19 @@ public class EmployeeDashboardController implements Initializable {
         productTbl.getColumns().add(qtyColumn);
         productTbl.getColumns().add(priceColumn);
         productTbl.getColumns().add(actionColumn);
+
+    }
+
+    public void btnAddProductOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/add-product-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnAddProduct.getScene().getWindow();
+        currentStage.close();
     }
 
     public void btnSettingsOnAction(ActionEvent actionEvent) throws IOException {
@@ -130,5 +127,25 @@ public class EmployeeDashboardController implements Initializable {
         stage.show();
         Stage currentStage = (Stage) btnAddProduct.getScene().getWindow();
         currentStage.close();
+    }
+
+    private void allProducts(){
+        employeeDashboardService.retriveProductsToTable(productTbl);
+    }
+
+    public void allBtnOnAction(ActionEvent actionEvent) {
+        allProducts();
+    }
+
+    public void mensBtnOnAction(ActionEvent actionEvent) {
+        employeeDashboardService.retriveMensWear(productTbl);
+    }
+
+    public void ladiesBtnOnAction(ActionEvent actionEvent) {
+        employeeDashboardService.retriveLadiesWear(productTbl);
+    }
+
+    public void kidsBtnOnAction(ActionEvent actionEvent) {
+        employeeDashboardService.retriveKidsWear(productTbl);
     }
 }

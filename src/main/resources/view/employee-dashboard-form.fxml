@@ -101,11 +101,24 @@
                   <Insets right="50.0" top="30.0" />
                </GridPane.margin>
             </TextField>
-            <MenuBar prefHeight="17.0" prefWidth="726.0" style="-fx-background-color: transperent;" stylesheets="@../styles/dashboard-style.css" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <MenuBar prefHeight="17.0" prefWidth="584.0" style="-fx-background-color: transperent;" stylesheets="@../styles/dashboard-style.css" GridPane.rowIndex="1" GridPane.valignment="CENTER">
               <menus>
-                <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Men’s Clothing" />
-                <Menu mnemonicParsing="false" text="Women’s Clothing" />
-                <Menu mnemonicParsing="false" text="Kids Clothing" />
+                  <Menu mnemonicParsing="false" style="-fx-text-fill: white;">
+                     <graphic>
+                        <JFXButton onAction="#allBtnOnAction" text="All" />
+                     </graphic></Menu>
+                <Menu mnemonicParsing="false" style="-fx-text-fill: white;">
+                     <graphic>
+                        <JFXButton onAction="#mensBtnOnAction" text="Mens Wear" />
+                     </graphic></Menu>
+                <Menu mnemonicParsing="false">
+                     <graphic>
+                        <JFXButton onAction="#ladiesBtnOnAction" text="ladies Wear" />
+                     </graphic></Menu>
+                <Menu mnemonicParsing="false">
+                     <graphic>
+                        <JFXButton onAction="#kidsBtnOnAction" text="Kids Wear" />
+                     </graphic></Menu>
               </menus>
             </MenuBar>
             <TableView fx:id="productTbl" GridPane.rowIndex="2" />

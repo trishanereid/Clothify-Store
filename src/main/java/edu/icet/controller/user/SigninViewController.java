@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -45,8 +46,15 @@ public class SigninViewController {
 
         String email = txtfieldEmail.getText();
         String password = txtfieldPassword.getText();
-
         signInService.userProfileActivation(email, password);
+
+        if (txtfieldEmail.getText().isEmpty() && txtfieldEmail.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Input");
+            alert.setHeaderText(null);
+            alert.setContentText("Text fields are empty. Please enter the email and password.");
+            alert.showAndWait();
+        }
 
         if (signInService.isAdmin()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/admin-dashboard-view.fxml"));

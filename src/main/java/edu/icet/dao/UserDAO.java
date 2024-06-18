@@ -12,8 +12,8 @@ import java.util.List;
 public class UserDAO {
     ModelMapper mapper = new ModelMapper();
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
     public void persist(User user) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
         entityManager.persist(
@@ -25,14 +25,13 @@ public class UserDAO {
         entityManagerFactory.close();
     }
 
-    public UserEntity retriveAcount(String email) {
-
-        List<UserEntity> userAccount = entityManager.createQuery("SELECT new edu.icet.model.UserModel(u.email, u.password, u.role) FROM UserEntity u WHERE u.email = :email", UserEntity.class)
+    public List<UserEntity> retriveAcount(String email) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        List<UserEntity> userAccount = entityManager.createQuery("FROM edu.icet.entity.UserEntity p WHERE p.email = :email", UserEntity.class)
                 .setParameter("email", email)
-                        .getResultList();
-        entityManager.close();
-        System.out.println(userAccount.toString());
-        return (UserEntity) userAccount;
+                .getResultList();
 
+        entityManager.close();
+        return userAccount;
     }
 }
