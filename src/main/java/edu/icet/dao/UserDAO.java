@@ -34,4 +34,15 @@ public class UserDAO {
         entityManager.close();
         return userAccount;
     }
+
+    public void updateUserAccount(String email, String newPassword) {
+        List<UserEntity> userDetails = retriveAcount(email);
+        for (UserEntity user : userDetails ){
+            user.setPassword(newPassword);
+        }
+
+        persist(
+                mapper.map(userDetails, User.class)
+        );
+    }
 }

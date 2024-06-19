@@ -7,13 +7,14 @@ import edu.icet.util.Password;
 import java.util.List;
 
 public class SignInService {
-
+    public static String emailFromDatabase = null;
     private String role = null;
+
     public void userProfileActivation(String email, String password) {
         Password passwordEncryption = new Password();
         UserDAO userDAO = new UserDAO();
 
-        String emailFromDatabase = null;
+
         String passwordFromDatabase = null;
         String roleFromDatabase = null;
 
@@ -40,6 +41,4 @@ public class SignInService {
             return false;
         }
     }
-
-
 }

@@ -37,7 +37,7 @@
                                 <Image url="@../img/dashboard-logo.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#btnSettingsOnAction" prefHeight="84.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Settings" GridPane.rowIndex="4">
+                        <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Settings" GridPane.rowIndex="4">
                             <graphic>
                                 <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -144,7 +144,7 @@
                           <RowConstraints maxHeight="51.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
                       </rowConstraints>
                       <children>
-                          <TextField fx:id="titleTxtField" editable="false" prefHeight="40.0" prefWidth="632.0" stylesheets="@../styles/dashboard-style.css" GridPane.rowIndex="1">
+                          <TextField fx:id="firstNameTxtField" editable="false" prefHeight="40.0" prefWidth="632.0" stylesheets="@../styles/dashboard-style.css" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="50.0" right="25.0" />
                      </GridPane.margin></TextField>
@@ -164,7 +164,7 @@
                      <GridPane.margin>
                         <Insets left="25.0" />
                      </GridPane.margin></Label>
-                          <TextField fx:id="colorTxtField" editable="false" layoutX="229.0" layoutY="448.0" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@../styles/dashboard-style.css" GridPane.rowIndex="3">
+                          <TextField fx:id="addressTxtField" editable="false" layoutX="229.0" layoutY="448.0" maxHeight="-Infinity" prefHeight="40.0" stylesheets="@../styles/dashboard-style.css" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="50.0" right="25.0" />
                      </GridPane.margin></TextField>
@@ -172,7 +172,7 @@
                      <GridPane.margin>
                         <Insets left="50.0" />
                      </GridPane.margin></Label>
-                          <TextField fx:id="qtyTxtField" editable="false" layoutX="229.0" layoutY="357.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                          <TextField fx:id="phoneNoTxtField" editable="false" layoutX="229.0" layoutY="357.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="25.0" right="50.0" />
                      </GridPane.margin></TextField>
@@ -180,26 +180,26 @@
                      <GridPane.margin>
                         <Insets left="25.0" />
                      </GridPane.margin></Label>
-                          <TextField fx:id="priceTxtField" layoutX="229.0" layoutY="431.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.rowIndex="8">
+                          <TextField fx:id="newPasswordTxtField" layoutX="229.0" layoutY="431.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="50.0" right="25.0" />
                      </GridPane.margin></TextField>
-                  <TextField fx:id="titleTxtField1" editable="false" layoutX="10.0" layoutY="74.0" prefHeight="40.0" prefWidth="632.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="lastNameTxtField" editable="false" layoutX="10.0" layoutY="74.0" prefHeight="40.0" prefWidth="632.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="25.0" right="50.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="qtyTxtField1" editable="false" layoutX="564.0" layoutY="166.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <TextField fx:id="jobRoleTxtField" editable="false" layoutX="564.0" layoutY="166.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="25.0" right="50.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="qtyTxtField2" editable="false" layoutX="564.0" layoutY="166.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.rowIndex="5">
+                  <TextField fx:id="emailTxtField" editable="false" layoutX="564.0" layoutY="166.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="50.0" right="25.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="priceTxtField1" layoutX="10.0" layoutY="349.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                  <TextField fx:id="confirmPasswordTxtField" layoutX="10.0" layoutY="349.0" maxHeight="-Infinity" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <GridPane.margin>
                         <Insets left="25.0" right="50.0" />
                      </GridPane.margin>
@@ -219,7 +219,7 @@
                         <Insets left="50.0" top="25.0" />
                      </padding>
                   </Label>
-                  <JFXButton prefHeight="36.0" prefWidth="114.0" style="-fx-background-radius: 8; -fx-border-radius: 8;" text="Update Password" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
+                  <JFXButton onAction="#btnUpdatePasswordOnAction" prefHeight="36.0" prefWidth="114.0" style="-fx-background-radius: 8; -fx-border-radius: 8;" text="Update Password" GridPane.halignment="RIGHT" GridPane.rowIndex="9">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
