@@ -1,7 +1,9 @@
 package edu.icet.controller.user;
 
 import edu.icet.bo.user.EmployeeDashboardService;
+import edu.icet.entity.CartEntity;
 import edu.icet.entity.ProductEntity;
+import edu.icet.model.Cart;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.ByteArrayInputStream;
@@ -19,16 +22,11 @@ import java.util.ResourceBundle;
 
 
 public class EmployeeDashboardController implements Initializable {
-
-    public Button btnCustomers;
     public Button btnAddProduct;
     public TableView productTbl;
-    public TableColumn productIdCol;
-    public TableColumn titleCol;
-    public TableColumn imgCol;
-    public TableColumn descriptionCol;
-    public TableColumn stockCol;
-    public TableColumn priceCol;
+    public TableView cartTbl;
+    public Label totalPriceLbl;
+    private double cartTotal = 0.0;
 
 
     EmployeeDashboardService employeeDashboardService = new EmployeeDashboardService();
@@ -66,34 +64,54 @@ public class EmployeeDashboardController implements Initializable {
         TableColumn<ProductEntity, String> descriptionColumn = new TableColumn<>("Description");
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        TableColumn<ProductEntity, Integer> qtyColumn = new TableColumn<>("Quantity");
+        TableColumn<ProductEntity, Integer> qtyColumn = new TableColumn<>("Stock");
         qtyColumn.setCellValueFactory(new PropertyValueFactory<>("qty"));
 
         TableColumn<ProductEntity, Double> priceColumn = new TableColumn<>("Price");
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
+        TableColumn<ProductEntity, Void> cartColumn = new TableColumn<>("Cart");
 
-        //---------------------add to cart button-------------//
-        TableColumn<ProductEntity, Void> actionColumn = new TableColumn<>();
-        actionColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button addButton = new Button("Add to Cart");
-            {
-                addButton.setOnAction(event -> {
-                    ProductEntity product = getTableView().getItems().get(getIndex());
-                    System.out.println("Added to cart: " + product);
-                });
-            }
+        cartColumn.setCellFactory(param -> new TableCell<>() {
+                    private final Spinner<Integer> quantitySpinner = new Spinner<>(1, 10, 1);
+                    private final Button addButton = new Button("Add to Cart");
+                    private final HBox hBox = new HBox(10, quantitySpinner, addButton);
+                    {
+                        addButton.setOnAction(event -> {
+                            ProductEntity product = getTableView().getItems().get(getIndex());
+                            int quantity = quantitySpinner.getValue();
+                            double totalPrice = product.getPrice() * quantity;
 
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(addButton);
-                }
-            }
+                            CartEntity cartItem = new CartEntity(
+                                    product.getId(),
+                                    product.getTitle(),
+                                    quantity,
+                                    totalPrice
+                            );
+                            cartTbl.getItems().add(cartItem);
+                            cartTotal += totalPrice;
+                            totalPriceLbl.setText("Rs."+String.valueOf(cartTotal));
+                        });
+                    }
+
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(hBox);
+                        }
+                    }
         });
+
+        idColumn.prefWidthProperty().bind(productTbl.widthProperty().multiply(0.05));
+        titleColumn.prefWidthProperty().bind(productTbl.widthProperty().multiply(0.2));
+        imageColumn.prefWidthProperty().bind(productTbl.widthProperty().multiply(0.1));
+        descriptionColumn.prefWidthProperty().bind(productTbl.widthProperty().multiply(0.25));
+        qtyColumn.prefWidthProperty().bind(productTbl.widthProperty().multiply(0.05));
+        priceColumn.prefWidthProperty().bind(productTbl.widthProperty().multiply(0.1));
+        cartColumn.prefWidthProperty().bind(productTbl.widthProperty().multiply(0.35));
 
         productTbl.getColumns().add(idColumn);
         productTbl.getColumns().add(titleColumn);
@@ -101,8 +119,26 @@ public class EmployeeDashboardController implements Initializable {
         productTbl.getColumns().add(descriptionColumn);
         productTbl.getColumns().add(qtyColumn);
         productTbl.getColumns().add(priceColumn);
-        productTbl.getColumns().add(actionColumn);
+        productTbl.getColumns().add(cartColumn);
 
+
+
+        TableColumn<CartEntity, String> cartIdColumn = new TableColumn<>("Product ID");
+        cartIdColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
+
+        TableColumn<CartEntity, String> cartTitleColumn = new TableColumn<>("Title");
+        cartTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+
+        TableColumn<CartEntity, Integer> cartQtyColumn = new TableColumn<>("Qty");
+        cartQtyColumn.setCellValueFactory(new PropertyValueFactory<>("qty"));
+
+        TableColumn<CartEntity, Double> cartTotalColumn = new TableColumn<>("Total");
+        cartTotalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        cartTbl.getColumns().add(cartIdColumn);
+        cartTbl.getColumns().add(cartTitleColumn);
+        cartTbl.getColumns().add(cartQtyColumn);
+        cartTbl.getColumns().add(cartTotalColumn);
     }
 
     public void btnAddProductOnAction(ActionEvent actionEvent) throws IOException {

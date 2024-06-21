@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -44,34 +43,17 @@
                   <Insets left="30.0" top="25.0" />
                </GridPane.margin>
             </Label>
-            <Label style="-fx-font-size: 14;" styleClass="custom-font" stylesheets="@../styles/style.css" text="Discount" textFill="#80828a" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets left="30.0" top="25.0" />
-               </GridPane.margin>
-            </Label>
-            <Label style="-fx-font-size: 14;" styleClass="custom-font" stylesheets="@../styles/style.css" text="Sub Total" textFill="#80828a" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label style="-fx-font-size: 14;" styleClass="custom-font" stylesheets="@../styles/style.css" text="Total" textFill="#80828a" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="25.0" left="30.0" />
                </GridPane.margin>
             </Label>
-            <Label layoutX="40.0" layoutY="551.0" style="-fx-font-size: 14;" styleClass="custom-font" stylesheets="@../styles/style.css" text="Rs. 250.00" textFill="#80828a" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets right="30.0" top="25.0" />
-               </GridPane.margin>
-            </Label>
-            <Label layoutX="40.0" layoutY="576.0" style="-fx-font-size: 14;" styleClass="custom-font" stylesheets="@../styles/style.css" text="Rs.1500.00" textFill="#80828a" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Label fx:id="totalPriceLbl" layoutX="40.0" layoutY="576.0" style="-fx-font-size: 14;" styleClass="custom-font" stylesheets="@../styles/style.css" text="Rs.0.00" textFill="#80828a" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="25.0" right="30.0" />
                </GridPane.margin>
             </Label>
-            <TableView maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
-              <columns>
-                <TableColumn prefWidth="50.0" text="Delete" />
-                <TableColumn prefWidth="180.0" text="Item" />
-                  <TableColumn prefWidth="51.0" text="Qty" />
-                  <TableColumn prefWidth="68.0" text="Price" />
-              </columns>
-            </TableView>
+            <TableView fx:id="cartTbl" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </right>
