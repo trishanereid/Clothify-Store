@@ -29,7 +29,7 @@ public class IdGenerator {
     public static synchronized String genarateOrderId() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        String lastUser = (String) entityManager.createQuery("SELECT id FROM orders u ORDER BY u.id DESC")
+        String lastUser = (String) entityManager.createQuery("SELECT orderId FROM orders u ORDER BY u.orderId DESC")
                 .setMaxResults(1)
                 .getResultList()
                 .stream()
@@ -39,7 +39,7 @@ public class IdGenerator {
         int nextId = 1;
         if(lastUser != null){
             String lastId = String.valueOf(lastUser);
-            nextId = Integer.parseInt(lastId.substring(1)) +1;
+            nextId = Integer.parseInt(lastId.substring(3)) +1;
         }
         entityManager.close();
         return String.format("ODR%03d",nextId);

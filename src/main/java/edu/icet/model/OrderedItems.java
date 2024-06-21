@@ -5,16 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
-
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class OrderedItems {
     private String orderId;
-    private String userId;
-    private Date date;
-    private Double total;
+    private String productId;
+    private int qty;
+    private double amount;
 }

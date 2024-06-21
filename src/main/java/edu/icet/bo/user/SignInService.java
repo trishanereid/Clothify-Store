@@ -8,6 +8,8 @@ import java.util.List;
 
 public class SignInService {
     public static String emailFromDatabase = null;
+    public static String userId = null;
+    public static String name = null;
     private String role = null;
 
     public void userProfileActivation(String email, String password) {
@@ -23,6 +25,8 @@ public class SignInService {
             emailFromDatabase = userEntity.getEmail();
             passwordFromDatabase = userEntity.getPassword();
             roleFromDatabase = userEntity.getRole();
+            userId = userEntity.getId();
+            name = userEntity.getFirstName();
         }
 
         String encryption = passwordEncryption.encryption(password);
