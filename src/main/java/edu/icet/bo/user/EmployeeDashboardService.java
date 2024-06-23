@@ -1,6 +1,6 @@
 package edu.icet.bo.user;
 
-import edu.icet.dao.ProductDAO;
+import edu.icet.dao.product.ProductDaoImpl;
 import edu.icet.entity.ProductEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,9 +9,9 @@ import javafx.scene.control.TableView;
 import java.util.List;
 
 public class EmployeeDashboardService {
-    private ProductDAO productDAO = new ProductDAO();
+    private ProductDaoImpl productDaoImpl = new ProductDaoImpl();
     public void retriveProductsToTable(TableView productTbl) {
-        List<ProductEntity> products = productDAO.getAllProducts();
+        List<ProductEntity> products = productDaoImpl.getAllProducts();
 
         ObservableList<ProductEntity> productList = FXCollections.observableArrayList();
 
@@ -23,7 +23,7 @@ public class EmployeeDashboardService {
     }
 
     public void retriveMensWear(TableView productTbl) {
-        List<ProductEntity> mensWearProducts = productDAO.getMenWearProducts();
+        List<ProductEntity> mensWearProducts = productDaoImpl.getMenWearProducts();
 
         ObservableList<ProductEntity> mensWearProductsList = FXCollections.observableArrayList();
 
@@ -34,7 +34,7 @@ public class EmployeeDashboardService {
     }
 
     public void retriveLadiesWear(TableView productTbl) {
-        List<ProductEntity> ladiesWearProducts = productDAO.getLadiesWearProducts();
+        List<ProductEntity> ladiesWearProducts = productDaoImpl.getLadiesWearProducts();
 
         ObservableList<ProductEntity> ladiesWearProductsList = FXCollections.observableArrayList();
 
@@ -45,7 +45,7 @@ public class EmployeeDashboardService {
     }
 
     public void retriveKidsWear(TableView productTbl) {
-        List<ProductEntity> kidsWearProducts = productDAO.getKidsWearProducts();
+        List<ProductEntity> kidsWearProducts = productDaoImpl.getKidsWearProducts();
 
         ObservableList<ProductEntity> kidsWearProductsList = FXCollections.observableArrayList();
 

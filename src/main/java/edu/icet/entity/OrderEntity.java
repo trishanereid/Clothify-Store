@@ -18,6 +18,6 @@ public class OrderEntity {
     @Id
     private String orderId;
     private String userId;
-    private Date date;
+    private String date;
     private Double total;
 }

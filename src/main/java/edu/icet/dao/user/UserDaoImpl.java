@@ -1,4 +1,4 @@
-package edu.icet.dao;
+package edu.icet.dao.user;
 
 import edu.icet.entity.UserEntity;
 import edu.icet.model.User;
@@ -9,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class UserDAO {
+public class UserDaoImpl implements UserDao {
     ModelMapper mapper = new ModelMapper();
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     public void persist(User user) {

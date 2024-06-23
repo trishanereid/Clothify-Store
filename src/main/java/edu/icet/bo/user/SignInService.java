@@ -1,6 +1,6 @@
 package edu.icet.bo.user;
 
-import edu.icet.dao.UserDAO;
+import edu.icet.dao.user.UserDaoImpl;
 import edu.icet.entity.UserEntity;
 import edu.icet.util.Password;
 
@@ -14,13 +14,13 @@ public class SignInService {
 
     public void userProfileActivation(String email, String password) {
         Password passwordEncryption = new Password();
-        UserDAO userDAO = new UserDAO();
+        UserDaoImpl userDaoImpl = new UserDaoImpl();
 
 
         String passwordFromDatabase = null;
         String roleFromDatabase = null;
 
-        List<UserEntity> userEntities = userDAO.retriveAcount(email);
+        List<UserEntity> userEntities = userDaoImpl.retriveAcount(email);
         for (UserEntity userEntity : userEntities){
             emailFromDatabase = userEntity.getEmail();
             passwordFromDatabase = userEntity.getPassword();

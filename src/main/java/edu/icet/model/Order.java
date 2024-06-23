@@ -15,6 +15,6 @@ import java.util.Date;
 public class Order {
     private String orderId;
     private String userId;
-    private Date date;
+    private String date;
     private Double total;
 }

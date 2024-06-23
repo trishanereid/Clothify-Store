@@ -1,6 +1,6 @@
 package edu.icet.controller.user;
 
-import edu.icet.bo.orders.OrderService;
+import edu.icet.bo.orders.OrderBoImpl;
 import edu.icet.bo.user.EmployeeDashboardService;
 import edu.icet.bo.user.SignInService;
 import edu.icet.entity.CartEntity;
@@ -34,10 +34,11 @@ public class EmployeeDashboardController implements Initializable {
     public Label orderIdlbl;
     public Label dateLbl;
     public Label welcomeNoteLbl;
+    public Button btnSignout;
     private double cartTotal = 0.0;
 
     EmployeeDashboardService employeeDashboardService = new EmployeeDashboardService();
-    OrderService orderService = new OrderService();
+    OrderBoImpl orderBoImpl = new OrderBoImpl();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -170,7 +171,7 @@ public class EmployeeDashboardController implements Initializable {
     }
 
     public void btnAddProductOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/add-product-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/product-management-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         Image image = new Image("icon.png");
@@ -218,12 +219,12 @@ public class EmployeeDashboardController implements Initializable {
         Order order = new Order(
                 orderIdlbl.getText(),
                 SignInService.userId,
-                loadDate(),
+                dateLbl.getText(),
                 cartTotal
         );
-        orderService.persistOrder(order);
+        orderBoImpl.persistOrder(order);
 
-        orderService.persistOrderItems();
+        orderBoImpl.persistOrderItems();
 
         cartTbl.getItems().clear();
         cartTotal = 0.0;
@@ -231,5 +232,29 @@ public class EmployeeDashboardController implements Initializable {
 
 
         orderIdlbl.setText(IdGenerator.genarateOrderId());
+    }
+
+    public void btnSalesHistoryOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/sales-history-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnAddProduct.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void btnSignOutOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/signin-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnSignout.getScene().getWindow();
+        currentStage.close();
     }
 }
