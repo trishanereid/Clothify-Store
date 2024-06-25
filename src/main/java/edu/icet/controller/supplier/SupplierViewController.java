@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import edu.icet.bo.BoFactory;
 import edu.icet.bo.supplier.SupplierBoImpl;
+import edu.icet.bo.user.UserBoImpl;
 import edu.icet.entity.ProductEntity;
 import edu.icet.entity.SupplierEntity;
 import edu.icet.model.Supplier;
@@ -47,7 +48,7 @@ public class SupplierViewController implements Initializable {
     SupplierBoImpl supplierBo = BoFactory.getInstance().getBo(BoType.SUPPLIER);
 
     public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/"+ UserBoImpl.dashboardView));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         Image image = new Image("icon.png");

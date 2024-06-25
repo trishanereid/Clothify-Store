@@ -49,6 +49,7 @@ public class SigninViewController {
         String email = txtfieldEmail.getText();
         String password = txtfieldPassword.getText();
         userBo.userProfileActivation(email, password);
+        System.out.println(UserBoImpl.dashboardView);
 
         if (txtfieldEmail.getText().isEmpty() && txtfieldEmail.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -58,8 +59,8 @@ public class SigninViewController {
             alert.showAndWait();
         }
 
-        if (userBo.isAdmin()){
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/admin-dashboard-view.fxml"));
+        if (userBo.dashboard().equals("admin-dashboard-view.fxml")){
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/"+userBo.dashboard()));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             Image image = new Image("icon.png");
@@ -69,7 +70,7 @@ public class SigninViewController {
             Stage currentStage = (Stage) txtfieldEmail.getScene().getWindow();
             currentStage.close();
         }else {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/"+userBo.dashboard()));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             Image image = new Image("icon.png");

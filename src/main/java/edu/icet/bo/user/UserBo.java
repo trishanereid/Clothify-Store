@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserBo extends SuperBo {
     void userProfileActivation(String email, String password);
-    boolean isAdmin();
+    String dashboard();
     List<UserEntity> loadAccountDetails(String emailFromDatabase);
     void updatePassword(String newPassword);
     void persist(User user);

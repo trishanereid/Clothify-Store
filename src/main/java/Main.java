@@ -14,7 +14,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/signin-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
-        Image image = new Image("img/icon.png");
+        Image image = new Image("icon.png");
         stage.getIcons().add(image);
         stage.setTitle("Clothify");
 

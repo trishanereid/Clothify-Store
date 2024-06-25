@@ -38,7 +38,7 @@ public class SettingsViewController implements Initializable {
     UserBoImpl userBo = BoFactory.getInstance().getBo(BoType.USER);
 
     public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/"+ UserBoImpl.dashboardView));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         Image image = new Image("icon.png");

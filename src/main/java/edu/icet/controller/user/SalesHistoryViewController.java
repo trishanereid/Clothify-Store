@@ -2,6 +2,7 @@ package edu.icet.controller.user;
 
 import edu.icet.bo.orders.OrderBo;
 import edu.icet.bo.orders.OrderBoImpl;
+import edu.icet.bo.user.UserBoImpl;
 import edu.icet.entity.ProductEntity;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class SalesHistoryViewController implements Initializable {
     public Button btnSupplierManage;
 
     public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/"+ UserBoImpl.dashboardView));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         Image image = new Image("icon.png");

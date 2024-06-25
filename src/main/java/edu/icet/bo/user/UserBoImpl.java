@@ -1,7 +1,6 @@
 package edu.icet.bo.user;
 
 import edu.icet.dao.DaoFactory;
-import edu.icet.dao.product.ProductDaoImpl;
 import edu.icet.dao.user.UserDaoImpl;
 import edu.icet.entity.UserEntity;
 import edu.icet.model.User;
@@ -22,16 +21,15 @@ public class UserBoImpl implements UserBo{
     private static final String CHARACTERS = "0123456789";
     private static final int OTP_LENGTH = 4;
     private static final SecureRandom random = new SecureRandom();
-
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final String SMTP_PORT = "587";
     private static final String USERNAME = "trishanereid@gmail.com";
     private static final String PASSWORD = "xcnnufmefoytwdfz";
     public static String otpCode;
-
-
+    public static String dashboardView = null;
     public static String emailFromDatabase = null;
     public static String userId = null;
+
     public static String name = null;
     private String role = null;
 
@@ -64,11 +62,13 @@ public class UserBoImpl implements UserBo{
     }
 
     @Override
-    public boolean isAdmin(){
+    public String dashboard(){
         if (role.equals("Admin")){
-            return true;
+            dashboardView = "admin-dashboard-view.fxml";
+            return dashboardView;
         }else {
-            return false;
+            dashboardView = "employee-dashboard-form.fxml";
+            return dashboardView;
         }
     }
 

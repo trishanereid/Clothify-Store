@@ -36,8 +36,11 @@ public class EmployeeDashboardController implements Initializable {
     public Label orderIdlbl;
     public Label dateLbl;
     public Label welcomeNoteLbl;
+
     public Button btnSignout;
+
     public Button btnSupplierManage;
+    public Button btnFinance;
     private double cartTotal = 0.0;
     double totalPrice;
 

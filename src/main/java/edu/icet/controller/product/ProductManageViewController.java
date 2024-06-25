@@ -6,6 +6,7 @@ import edu.icet.bo.BoFactory;
 import edu.icet.bo.SuperBo;
 import edu.icet.bo.orders.OrderBoImpl;
 import edu.icet.bo.product.ProductBoImpl;
+import edu.icet.bo.user.UserBoImpl;
 import edu.icet.entity.ProductEntity;
 import edu.icet.model.Product;
 import edu.icet.util.BoType;
@@ -52,7 +53,7 @@ public class ProductManageViewController implements Initializable {
 
 
     public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/"+ UserBoImpl.dashboardView));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         Image image = new Image("icon.png");
