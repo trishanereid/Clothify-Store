@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #2E2E2E;" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.user.AdminDashboardViewController">
    <center>
@@ -19,7 +29,6 @@
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="110.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="583.0" minHeight="10.0" prefHeight="558.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
@@ -33,6 +42,99 @@
                   <Insets left="30.0" top="70.0" />
                </GridPane.margin>
             </Label>
+            <ScrollPane fitToWidth="true" prefHeight="800.0" prefWidth="1076.0" stylesheets="@../styles/dashboard-style.css" GridPane.rowIndex="1">
+               <content>
+                  <VBox prefHeight="766.0" prefWidth="1059.0">
+                     <children>
+                        <HBox prefHeight="194.0" prefWidth="1059.0">
+                           <children>
+                              <AnchorPane prefHeight="196.0" prefWidth="520.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="170.0" layoutX="37.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+                                    <Label layoutX="59.0" layoutY="53.0" text="Today's Sales Amount" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="97.0" layoutY="89.0" text="Rs. 56250.00" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="196.0" prefWidth="520.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="170.0" layoutX="26.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+                                    <Label layoutX="159.0" layoutY="89.0" text="20" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="47.0" layoutY="49.0" text="Today's sales count" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="530.0" layoutY="10.0" prefHeight="196.0" prefWidth="353.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="170.0" layoutX="31.0" layoutY="26.0" stroke="BLACK" strokeType="INSIDE" width="300.0" />
+                                    <Label layoutX="72.0" layoutY="93.0" text="Rs. 56250.00" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="30.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="52.0" layoutY="49.0" text="Weekly Sales Amount" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets right="50.0" />
+                                 </padding>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Weekly Sales Chart">
+                           <VBox.margin>
+                              <Insets bottom="30.0" left="80.0" top="40.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                        <LineChart fx:id="chatWeeklySales" prefHeight="491.0" prefWidth="1059.0" stylesheets="@../styles/style.css">
+                          <xAxis>
+                            <CategoryAxis label="Days" side="BOTTOM" tickLabelFill="WHITE" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="No of sales" side="LEFT" tickLabelFill="WHITE" />
+                          </yAxis>
+                           <padding>
+                              <Insets left="100.0" right="100.0" />
+                           </padding>
+                        </LineChart>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        <GridPane prefHeight="103.0" prefWidth="1059.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <JFXButton alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="153.0" prefWidth="105.0" text="Get Sales Report" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children>
       </GridPane>
    </center>

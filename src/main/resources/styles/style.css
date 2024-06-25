@@ -32,3 +32,11 @@
     -fx-font-size: 20px;
     -fx-font-weight: 600;
 }
+
+.rectangle {
+    -fx-background-color: #2ecc71;
+    -fx-background-radius: 20px; /* Change the radius as needed */
+    -fx-border-radius: 20px; /* Make the border radius the same */
+    -fx-border-color: #27ae60;
+    -fx-border-width: 2px;
+}
