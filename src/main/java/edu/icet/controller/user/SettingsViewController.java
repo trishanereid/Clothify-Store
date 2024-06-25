@@ -29,10 +29,15 @@ public class SettingsViewController implements Initializable {
     public TextField jobRoleTxtField;
     public TextField emailTxtField;
     public TextField confirmPasswordTxtField;
+    public Button btnDashboard;
+    public Button btnAddProduct;
+    public Button btnSignout;
+    public Button btnSalesHistory;
+    public Button btnSupplierManage;
 
     UserBoImpl userBo = BoFactory.getInstance().getBo(BoType.USER);
-    public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
 
+    public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
@@ -40,10 +45,69 @@ public class SettingsViewController implements Initializable {
         stage.getIcons().add(image);
         stage.setScene(scene);
         stage.show();
-        Stage currentStage = (Stage) btnSettings.getScene().getWindow();
+        Stage currentStage = (Stage) btnSignout.getScene().getWindow();
         currentStage.close();
     }
 
+    public void btnProductMagementOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/product-management-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnAddProduct.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void btnSignOutOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/signin-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnSignout.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void btnSalesHistoryOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/sales-history-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnAddProduct.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void btnSettingsOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/settings-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnAddProduct.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void btnSupplierManageOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/supplier-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnSignout.getScene().getWindow();
+        currentStage.close();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
