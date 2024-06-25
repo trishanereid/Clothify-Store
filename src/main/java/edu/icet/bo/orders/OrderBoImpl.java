@@ -31,8 +31,6 @@ public class OrderBoImpl implements OrderBo{
         entityManagerFactory.close();
     }
 
-
-
     @Override
     public void persistOrderItems() {
         

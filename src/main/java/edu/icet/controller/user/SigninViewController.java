@@ -1,6 +1,8 @@
 package edu.icet.controller.user;
 
-import edu.icet.bo.user.SignInService;
+import edu.icet.bo.BoFactory;
+import edu.icet.bo.user.UserBoImpl;
+import edu.icet.util.BoType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,6 +24,7 @@ public class SigninViewController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    UserBoImpl userBo = BoFactory.getInstance().getBo(BoType.USER);
 
     public void SignUpLinkOnAction(ActionEvent actionEvent) throws IOException {
 
@@ -42,11 +45,10 @@ public class SigninViewController {
     }
 
     public void SignInBtnOnAction(ActionEvent actionEvent) throws IOException {
-        SignInService signInService = new SignInService();
 
         String email = txtfieldEmail.getText();
         String password = txtfieldPassword.getText();
-        signInService.userProfileActivation(email, password);
+        userBo.userProfileActivation(email, password);
 
         if (txtfieldEmail.getText().isEmpty() && txtfieldEmail.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -56,7 +58,7 @@ public class SigninViewController {
             alert.showAndWait();
         }
 
-        if (signInService.isAdmin()){
+        if (userBo.isAdmin()){
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/admin-dashboard-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();

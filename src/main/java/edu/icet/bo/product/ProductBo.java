@@ -13,4 +13,8 @@ public interface ProductBo extends SuperBo {
     List<ProductEntity> searchById(Object value);
     void update(Object productId, double price, int qty);
     void Delete(Object value);
+    void retriveProductsToTable(TableView productTbl);
+    void retriveMensWear(TableView productTbl);
+    void retriveLadiesWear(TableView productTbl);
+    void retriveKidsWear(TableView productTbl);
 }

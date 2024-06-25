@@ -44,4 +44,23 @@ public class IdGenerator {
         entityManager.close();
         return String.format("ODR%03d",nextId);
     }
+
+    public static synchronized String genarateSupplierId() {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        String lastUser = (String) entityManager.createQuery("SELECT id FROM suppliers u ORDER BY u.id DESC")
+                .setMaxResults(1)
+                .getResultList()
+                .stream()
+                .findFirst()
+                .orElse(null);
+
+        int nextId = 1;
+        if(lastUser != null){
+            String lastId = String.valueOf(lastUser);
+            nextId = Integer.parseInt(lastId.substring(3)) +1;
+        }
+        entityManager.close();
+        return String.format("SUP%03d",nextId);
+    }
 }

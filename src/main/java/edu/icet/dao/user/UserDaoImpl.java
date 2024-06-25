@@ -12,6 +12,8 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
     ModelMapper mapper = new ModelMapper();
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+
+    @Override
     public void persist(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
@@ -25,6 +27,7 @@ public class UserDaoImpl implements UserDao {
         entityManagerFactory.close();
     }
 
+    @Override
     public List<UserEntity> retriveAcount(String email) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<UserEntity> userAccount = entityManager.createQuery("FROM edu.icet.entity.UserEntity p WHERE p.email = :email", UserEntity.class)
@@ -35,6 +38,7 @@ public class UserDaoImpl implements UserDao {
         return userAccount;
     }
 
+    @Override
     public void updateUserAccount(String email, String newPassword) {
         List<UserEntity> userDetails = retriveAcount(email);
         for (UserEntity user : userDetails ){

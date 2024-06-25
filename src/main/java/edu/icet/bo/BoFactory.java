@@ -2,8 +2,11 @@ package edu.icet.bo;
 
 import edu.icet.bo.orders.OrderBoImpl;
 import edu.icet.bo.product.ProductBoImpl;
+import edu.icet.bo.supplier.SupplierBoImpl;
 import edu.icet.bo.user.UserBoImpl;
 import edu.icet.util.BoType;
+
+import static edu.icet.util.DaoType.SUPPLIER;
 
 public class BoFactory{
     private static BoFactory instance;
@@ -19,6 +22,7 @@ public class BoFactory{
             case USER:return (T)new UserBoImpl();
             case ORDER:return (T)new OrderBoImpl();
             case PRODUCT:return (T)new ProductBoImpl();
+            case SUPPLIER:return (T)new SupplierBoImpl();
         }
         return null;
     }

@@ -1,8 +1,9 @@
 package edu.icet.controller.user;
 
-import edu.icet.bo.user.SettingsService;
-import edu.icet.bo.user.SignInService;
+import edu.icet.bo.BoFactory;
+import edu.icet.bo.user.UserBoImpl;
 import edu.icet.entity.UserEntity;
+import edu.icet.util.BoType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -29,7 +30,7 @@ public class SettingsViewController implements Initializable {
     public TextField emailTxtField;
     public TextField confirmPasswordTxtField;
 
-    SettingsService settingsService = new SettingsService();
+    UserBoImpl userBo = BoFactory.getInstance().getBo(BoType.USER);
     public void btnDashboardOnAction(ActionEvent actionEvent) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/employee-dashboard-form.fxml"));
@@ -46,7 +47,7 @@ public class SettingsViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        List<UserEntity> accountDetails = settingsService.loadAccountDetails(SignInService.emailFromDatabase);
+        List<UserEntity> accountDetails = userBo.loadAccountDetails(userBo.emailFromDatabase);
         for (UserEntity account :accountDetails){
             firstNameTxtField.setText(account.getFirstName());
             lastNameTxtField.setText(account.getLastName());
@@ -65,7 +66,7 @@ public class SettingsViewController implements Initializable {
             alert.setContentText("Password Does not match each other. Please enter again.");
             alert.showAndWait();
         }else {
-            settingsService.updatePassword(confirmPasswordTxtField.getText());
+            userBo.updatePassword(confirmPasswordTxtField.getText());
         }
     }
 }

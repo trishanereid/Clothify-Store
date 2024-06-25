@@ -9,8 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class Supplier {
+    private String id;
     private String name;
     private String company;
     private String email;
-    private Double address;
+    private String address;
 }

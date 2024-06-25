@@ -1,6 +1,10 @@
 package edu.icet.controller.user;
 
-import edu.icet.bo.user.ForgotPasswordService;
+import edu.icet.bo.BoFactory;
+import edu.icet.bo.user.UserBoImpl;
+import edu.icet.dao.DaoFactory;
+import edu.icet.util.BoType;
+import edu.icet.util.DaoType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,9 +18,9 @@ import java.io.IOException;
 public class ForgotPasswordViewController {
     public TextField emailField;
     public static String recipientEmail;
+    UserBoImpl userBo = BoFactory.getInstance().getBo(BoType.USER);
     public void btnSendCodeOnAction(ActionEvent actionEvent) {
-        ForgotPasswordService forgotPasswordService = new ForgotPasswordService();
-        forgotPasswordService.sendOtp(emailField.getText());
+        userBo.sendOtp(emailField.getText());
         recipientEmail = emailField.getText();
 
         Parent root = null;

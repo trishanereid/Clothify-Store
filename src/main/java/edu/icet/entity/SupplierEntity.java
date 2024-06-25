@@ -15,10 +15,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class SupplierEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+
     private String name;
     private String company;
     private String email;
-    private Double address;
+    private String address;
 }

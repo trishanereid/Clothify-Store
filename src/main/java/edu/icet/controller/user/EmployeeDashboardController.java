@@ -1,11 +1,13 @@
 package edu.icet.controller.user;
 
+import edu.icet.bo.BoFactory;
 import edu.icet.bo.orders.OrderBoImpl;
-import edu.icet.bo.user.EmployeeDashboardService;
-import edu.icet.bo.user.SignInService;
+import edu.icet.bo.product.ProductBoImpl;
+import edu.icet.bo.user.UserBoImpl;
 import edu.icet.entity.CartEntity;
 import edu.icet.entity.ProductEntity;
 import edu.icet.model.Order;
+import edu.icet.util.BoType;
 import edu.icet.util.IdGenerator;
 
 import javafx.event.ActionEvent;
@@ -35,15 +37,18 @@ public class EmployeeDashboardController implements Initializable {
     public Label dateLbl;
     public Label welcomeNoteLbl;
     public Button btnSignout;
+    public Button btnSupplierManage;
     private double cartTotal = 0.0;
+    double totalPrice;
 
-    EmployeeDashboardService employeeDashboardService = new EmployeeDashboardService();
-    OrderBoImpl orderBoImpl = new OrderBoImpl();
+    UserBoImpl userBo = BoFactory.getInstance().getBo(BoType.USER);
+    OrderBoImpl orderBo = BoFactory.getInstance().getBo(BoType.ORDER);
+    ProductBoImpl productBo = BoFactory.getInstance().getBo(BoType.PRODUCT);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         orderIdlbl.setText(IdGenerator.genarateOrderId());
-        welcomeNoteLbl.setText("Welcome "+SignInService.name);
+        welcomeNoteLbl.setText("Welcome "+userBo.name);
         loadDate();
         allProducts();
 
@@ -92,7 +97,7 @@ public class EmployeeDashboardController implements Initializable {
                 addButton.setOnAction(event -> {
                     ProductEntity product = getTableView().getItems().get(getIndex());
                     int quantity = quantitySpinner.getValue();
-                    double totalPrice = product.getPrice() * quantity;
+                    totalPrice = product.getPrice() * quantity;
 
                     CartEntity cartItem = new CartEntity(
                             product.getId(),
@@ -103,14 +108,6 @@ public class EmployeeDashboardController implements Initializable {
                     cartTbl.getItems().add(cartItem);
                     cartTotal += totalPrice;
                     totalPriceLbl.setText("Rs."+String.valueOf(cartTotal));
-
-//                    new OrderedItems(
-//                            orderIdlbl.getText(),
-//                            product.getId(),
-//                            product.getQty(),
-//                            product.getPrice()
-//                    );
-
                     quantitySpinner.getValueFactory().setValue(0);
                 });
 
@@ -144,7 +141,6 @@ public class EmployeeDashboardController implements Initializable {
         productTbl.getColumns().add(cartColumn);
 
 
-
         TableColumn<CartEntity, String> cartIdColumn = new TableColumn<>("Product ID");
         cartIdColumn.setCellValueFactory(new PropertyValueFactory<>("productId"));
 
@@ -157,10 +153,39 @@ public class EmployeeDashboardController implements Initializable {
         TableColumn<CartEntity, Double> cartTotalColumn = new TableColumn<>("Total");
         cartTotalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 
+        TableColumn<CartEntity, Void> deleteColumn = new TableColumn<>("");
+        deleteColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button deleteButton = new Button("Delete");
+
+            {
+                deleteButton.setOnAction(event -> {
+                    CartEntity cartItem = getTableView().getItems().get(getIndex());
+                    getTableView().getItems().remove(cartItem);
+                    updateCartTotal();
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(deleteButton);
+                }
+            }
+        });
+
         cartTbl.getColumns().add(cartIdColumn);
         cartTbl.getColumns().add(cartTitleColumn);
         cartTbl.getColumns().add(cartQtyColumn);
         cartTbl.getColumns().add(cartTotalColumn);
+        cartTbl.getColumns().add(deleteColumn);
+    }
+
+    private void updateCartTotal() {
+        cartTotal -= totalPrice;
+        totalPriceLbl.setText("Rs."+String.valueOf(cartTotal));
     }
 
     private Date loadDate() {
@@ -195,7 +220,7 @@ public class EmployeeDashboardController implements Initializable {
     }
 
     private void allProducts(){
-        employeeDashboardService.retriveProductsToTable(productTbl);
+        productBo.retriveProductsToTable(productTbl);
     }
 
     public void allBtnOnAction(ActionEvent actionEvent) {
@@ -203,28 +228,28 @@ public class EmployeeDashboardController implements Initializable {
     }
 
     public void mensBtnOnAction(ActionEvent actionEvent) {
-        employeeDashboardService.retriveMensWear(productTbl);
+        productBo.retriveMensWear(productTbl);
     }
 
     public void ladiesBtnOnAction(ActionEvent actionEvent) {
-        employeeDashboardService.retriveLadiesWear(productTbl);
+        productBo.retriveLadiesWear(productTbl);
     }
 
     public void kidsBtnOnAction(ActionEvent actionEvent) {
-        employeeDashboardService.retriveKidsWear(productTbl);
+        productBo.retriveKidsWear(productTbl);
     }
 
     public void btnPaymentProceedOnAction(ActionEvent actionEvent) {
 
         Order order = new Order(
                 orderIdlbl.getText(),
-                SignInService.userId,
+                userBo.userId,
                 dateLbl.getText(),
                 cartTotal
         );
-        orderBoImpl.persistOrder(order);
+        orderBo.persistOrder(order);
 
-        orderBoImpl.persistOrderItems();
+        orderBo.persistOrderItems();
 
         cartTbl.getItems().clear();
         cartTotal = 0.0;
@@ -248,6 +273,18 @@ public class EmployeeDashboardController implements Initializable {
 
     public void btnSignOutOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/signin-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        Image image = new Image("icon.png");
+        stage.getIcons().add(image);
+        stage.setScene(scene);
+        stage.show();
+        Stage currentStage = (Stage) btnSignout.getScene().getWindow();
+        currentStage.close();
+    }
+
+    public void btnSupplierManageOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/supplier-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         Image image = new Image("icon.png");

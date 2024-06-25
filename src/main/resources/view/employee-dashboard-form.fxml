@@ -117,16 +117,19 @@
                   <RowConstraints maxHeight="451.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="451.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="451.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="439.0" minHeight="10.0" prefHeight="288.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="451.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="439.0" minHeight="10.0" prefHeight="288.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
               </rowConstraints>
+
+
                <children>
                   <ImageView fitHeight="45.0" fitWidth="148.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <image>
                         <Image url="@../img/dashboard-logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#btnSettingsOnAction" prefHeight="84.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Settings" GridPane.rowIndex="4">
+                  <Button fx:id="btnSettings" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#btnSettingsOnAction" prefHeight="84.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Settings" GridPane.rowIndex="5">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -165,7 +168,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#btnSignOutOnAction" prefHeight="65.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Sign Out" GridPane.rowIndex="6">
+                  <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#btnSignOutOnAction" prefHeight="65.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Sign Out" GridPane.rowIndex="7">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -177,7 +180,7 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="btnSalesHistory" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnSalesHistoryOnAction" prefHeight="84.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Sales History" GridPane.rowIndex="3">
+                  <Button fx:id="btnSalesHistory" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnSalesHistoryOnAction" prefHeight="84.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Sales History" GridPane.rowIndex="4">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -189,9 +192,23 @@
                         <Insets left="50.0" />
                      </padding>
                   </Button>
+                  <Button fx:id="btnSupplierManage" alignment="BASELINE_LEFT" graphicTextGap="22.0" layoutX="10.0" layoutY="172.0" mnemonicParsing="false" onAction="#btnSupplierManageOnAction" prefHeight="90.0" prefWidth="224.0" stylesheets="@../styles/dashboard-style.css" text="Supplier Management" GridPane.rowIndex="3">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/icons8_Xbox_Menu_32px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </Button>
                </children>
             </GridPane>
          </children>
+
+
       </VBox>
    </left>
 </BorderPane>

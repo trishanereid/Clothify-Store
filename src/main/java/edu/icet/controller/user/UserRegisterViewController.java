@@ -1,8 +1,11 @@
 package edu.icet.controller.user;
 
 import com.jfoenix.controls.JFXComboBox;
+import edu.icet.bo.BoFactory;
+import edu.icet.bo.user.UserBoImpl;
 import edu.icet.dao.user.UserDaoImpl;
 import edu.icet.model.User;
+import edu.icet.util.BoType;
 import edu.icet.util.IdGenerator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +40,7 @@ public class UserRegisterViewController implements Initializable {
 
 
     public void SignUpBtnOnAction(ActionEvent actionEvent) throws IOException {
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
+        UserBoImpl userBo = BoFactory.getInstance().getBo(BoType.USER);
 
         String password = null;
         if (passwordTxtField.getText().equals(reEnterPasswordTxtField.getText())){
@@ -77,7 +80,7 @@ public class UserRegisterViewController implements Initializable {
                 passwordEncryption(password)
         );
 
-        userDaoImpl.persist(user);
+        userBo.persist(user);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Account Center");

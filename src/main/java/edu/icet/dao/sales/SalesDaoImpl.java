@@ -1,6 +1,6 @@
 package edu.icet.dao.sales;
 
-import edu.icet.bo.user.SignInService;
+import edu.icet.bo.user.UserBoImpl;
 import edu.icet.entity.OrderEntity;
 
 import javax.persistence.EntityManager;
@@ -13,11 +13,12 @@ import java.util.List;
 public class SalesDaoImpl implements SalesDao {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
 
+    @Override
     public List<OrderEntity> retriveTodaysOrders() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<OrderEntity> productList = entityManager.createQuery("FROM edu.icet.entity.OrderEntity p WHERE p.date = :date AND p.userId = :userId", OrderEntity.class)
                 .setParameter("date", loadDate())
-                .setParameter("userId", SignInService.userId)
+                .setParameter("userId", UserBoImpl.userId)
                 .getResultList();
 
         entityManager.close();

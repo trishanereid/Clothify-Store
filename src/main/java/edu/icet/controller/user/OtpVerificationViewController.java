@@ -1,6 +1,8 @@
 package edu.icet.controller.user;
 
-import edu.icet.bo.user.ForgotPasswordService;
+import edu.icet.bo.BoFactory;
+import edu.icet.bo.user.UserBoImpl;
+import edu.icet.util.BoType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,7 +25,7 @@ public class OtpVerificationViewController implements Initializable {
     String email = ForgotPasswordViewController.recipientEmail;
 
     public void btnVerifyCodeOnAction(ActionEvent actionEvent) throws IOException {
-        if(codeTxtField.getText().equals(ForgotPasswordService.otpCode)){
+        if(codeTxtField.getText().equals(UserBoImpl.otpCode)){
             Parent root = FXMLLoader.load(getClass().getResource("/view/password-reset-view.fxml"));
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -36,12 +38,11 @@ public class OtpVerificationViewController implements Initializable {
 
     public void linkReSendEmailOnAction(ActionEvent actionEvent) {
         try {
-            ForgotPasswordService.sendEmail(email,ForgotPasswordService.genarateOtp());
+            UserBoImpl.sendEmail(email,UserBoImpl.genarateOtp());
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
